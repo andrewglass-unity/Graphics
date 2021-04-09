@@ -86,8 +86,8 @@ namespace UnityEditor.Rendering
 
         /// <summary>
         /// Preserves wind quality and billboard settings while you are upgrading a SpeedTree 8 material from previous versions of SpeedTree 8.
-        /// To determine which WindQuality to use, Unity checks the keywords first and then the _WindQuality float value. 
-	/// See SpeedTree in the Unity Manual for the values associated with different WindQuality settings.
+        /// To determine which WindQuality to use, Unity checks the keywords first and then the _WindQuality float value.
+        /// See SpeedTree in the Unity Manual for the values associated with different WindQuality settings.
         /// Should work for upgrading versions within a pipeline and from standard to current pipeline.
         /// </summary>
         /// <param name="material">SpeedTree 8 material to upgrade.</param>
