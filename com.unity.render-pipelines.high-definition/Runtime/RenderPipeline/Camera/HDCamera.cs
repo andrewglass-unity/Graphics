@@ -302,11 +302,9 @@ namespace UnityEngine.Rendering.HighDefinition
         // XR multipass and instanced views are supported (see XRSystem)
         internal XRPass xr { get; private set; }
 
-        internal float GlobalMipBias { set; get; } = 0.0f;
+        internal float globalMipBias { set; get; } = 0.0f;
 
-        internal void ResetGlobalMipBias() { GlobalMipBias = 0.0f; }
-
-        internal void SetGlobalMipBiasFromCamera() { GlobalMipBias = m_AdditionalCameraData == null ? 0.0f : m_AdditionalCameraData.materialMipBias; }
+        internal void SetGlobalMipBiasFromCamera() { globalMipBias = m_AdditionalCameraData == null ? 0.0f : m_AdditionalCameraData.materialMipBias; }
 
         internal float deltaTime => time - lastTime;
 
@@ -963,7 +961,7 @@ namespace UnityEngine.Rendering.HighDefinition
             cb._TaaFrameInfo = new Vector4(taaSharpenStrength, 0, taaFrameIndex, taaEnabled ? 1 : 0);
             cb._TaaJitterStrength = taaJitter;
             cb._ColorPyramidLodCount = colorPyramidHistoryMipCount;
-            cb._GlobalMipBias = GlobalMipBias;
+            cb._GlobalMipBias = globalMipBias;
 
             float ct = time;
             float pt = lastTime;
