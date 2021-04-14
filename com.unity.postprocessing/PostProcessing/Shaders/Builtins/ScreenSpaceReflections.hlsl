@@ -85,6 +85,7 @@ float4 _Params2; // x: aspect ratio, y: noise tiling, z: thickness, w: maximum i
 #define _NoiseTiling _Params2.y
 #define _Bandwidth _Params2.z
 #define _MaximumIterationCount _Params2.w
+#define _ReflectionDepth 1.f
 
 //
 // Helper functions
@@ -239,8 +240,9 @@ Result March(Ray ray, VaryingsDefault input)
         float d = _CameraDepthTexture.SampleLevel(sampler_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(uv), 0);
         float depth = -LinearEyeDepth(d);
 
+        float rayInDepthRange = step(z.y, depth) - step(z.y + _ReflectionDepth, depth);
         UNITY_FLATTEN
-        if (z.y < depth)
+        if (rayInDepthRange > 0)
         {
             result.uv = uv;
             result.isHit = true;
