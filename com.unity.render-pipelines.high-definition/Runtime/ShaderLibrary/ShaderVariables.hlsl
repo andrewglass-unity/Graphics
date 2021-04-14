@@ -156,6 +156,9 @@ TEXTURE2D(_PrevExposureTexture);
 
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariablesXR.cs.hlsl"
 
+// In HDRP, all material samplers have the possibility of having a mip bias.
+// This mip bias is necessary for temporal upsamplers, since they render to a lower
+// resolution into a higher resolution target.
 #ifdef SAMPLE_TEXTURE2D
 #undef SAMPLE_TEXTURE2D
 #define SAMPLE_TEXTURE2D(textureName, samplerName, coord2) \

@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a fallback for the ray traced directional shadow in case of a transmission (case 1307870).
 - Added support for Fabric material in Path Tracing.
 - Added help URL for volumetric clouds override.
+- Added support for mip bias override on texture samplers, through the HDAdditionalCameraData component.
 
 ### Fixed
 - Fixed Intensity Multiplier not affecting realtime global illumination.

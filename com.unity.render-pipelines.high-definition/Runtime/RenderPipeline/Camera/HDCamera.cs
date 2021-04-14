@@ -304,8 +304,6 @@ namespace UnityEngine.Rendering.HighDefinition
 
         internal float globalMipBias { set; get; } = 0.0f;
 
-        internal void SetGlobalMipBiasFromCamera() { globalMipBias = m_AdditionalCameraData == null ? 0.0f : m_AdditionalCameraData.materialMipBias; }
-
         internal float deltaTime => time - lastTime;
 
         // Non oblique projection matrix (RHS)
@@ -668,8 +666,6 @@ namespace UnityEngine.Rendering.HighDefinition
             // Inherit animation settings from the parent camera.
             Camera aniCam = (parentCamera != null) ? parentCamera : camera;
 
-            SetGlobalMipBiasFromCamera();
-
             // Different views/tabs may have different values of the "Animated Materials" setting.
             animateMaterials = CoreUtils.AreAnimatedMaterialsEnabled(aniCam);
             if (animateMaterials)
@@ -711,6 +707,8 @@ namespace UnityEngine.Rendering.HighDefinition
             // store a shortcut on HDAdditionalCameraData (done here and not in the constructor as
             // we don't create HDCamera at every frame and user can change the HDAdditionalData later (Like when they create a new scene).
             camera.TryGetComponent<HDAdditionalCameraData>(out m_AdditionalCameraData);
+
+            globalMipBias = m_AdditionalCameraData == null ? 0.0f : m_AdditionalCameraData.materialMipBias;
 
             UpdateVolumeAndPhysicalParameters();
 
